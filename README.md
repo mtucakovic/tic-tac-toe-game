@@ -8,7 +8,7 @@
 
 * build docker compose:
 
-`docker-compose up`
+`docker compose up`
 
 * dependencies and db setup:
 

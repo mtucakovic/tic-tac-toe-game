@@ -1,16 +1,7 @@
-<div class='game' data-controller="game" data-game-id="<%= params[:id] %>" data-game-symbol="<%= params[:symbol] %>">
+<div class='game' data-controller="game" data-game-id="<%= params[:id] %>" data-game-symbol="<%= params[:symbol] %>" data-game-name="<%= params[:name] %>">
     <h1>tic-tac-toe</h1>
     <div data-game-target="container">
         <!-- Game content will be rendered here -->
     </div>
-    <button class='button' onclick="newGame()">New Game</button>
+    <button class='button' data-action="click->game#newGame">New Game</button>
 </div>
-
-<script>
-// use window.location.href instead of regular link_to to close current websocket connection1
-function newGame() {
-  var name = "<%= j(params[:name]) %>";
-  var newUrl = "/?name=" + encodeURIComponent(name);
-  window.location.href = newUrl;
-}
-</script>

@@ -48,6 +48,11 @@ export default class extends Controller {
       this.renderGame(data, this.containerTarget))
   }
 
+  newGame() {
+    const newUrl = `/?name=${encodeURIComponent(this.element.dataset.gameName)}`;
+    window.location.href = newUrl;
+  }
+
   renderGame(data, target) {
     target.innerHTML = `
       <div id="game-container">
