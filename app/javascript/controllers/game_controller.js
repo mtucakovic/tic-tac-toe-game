@@ -21,9 +21,9 @@ export default class extends Controller {
   }
 
   makeMove(event) {
-    var gameId = event.target.dataset.gameGame;
+    var gameId = this.element.dataset.gameGame;
     var position = event.target.dataset.gameIndex;
-    var symbol = event.target.dataset.gameSymbol;
+    var symbol = this.element.dataset.gameSymbol;
 
     fetch(`/api/games/${gameId}`, {
       method: "PATCH",
@@ -55,38 +55,38 @@ export default class extends Controller {
 
   renderGame(data, target) {
     target.innerHTML = `
-      <div id="game-container">
+      <div id="game-container" data-controller="game" data-game-game="${this.gameId}"  data-game-symbol="${this.userSymbol}">
         <div class="board">
           <div class="row">
-            <div class="cell" ${!data.game.board[0] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="0" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[0] ? `data-action="click->game#makeMove" data-game-index="0"` : ''}>
               ${data.game.board[0] ? data.game.board[0] : ''}
             </div>
-            <div class="cell" ${!data.game.board[1] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="1" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[1] ? `data-action="click->game#makeMove" data-game-index="1"` : ''}>
               ${data.game.board[1] ? data.game.board[1] : ''}
             </div>
-            <div class="cell" ${!data.game.board[2] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="2" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[2] ? `data-action="click->game#makeMove" data-game-index="2"` : ''}>
               ${data.game.board[2] ? data.game.board[2] : ''}
             </div>
           </div>
           <div class="row">
-            <div class="cell" ${!data.game.board[3] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="3" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[3] ? `data-action="click->game#makeMove" data-game-index="3"` : ''}>
               ${data.game.board[3] ? data.game.board[3] : ''}
             </div>
-            <div class="cell" ${!data.game.board[4] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="4" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[4] ? `data-action="click->game#makeMove" data-game-index="4"` : ''}>
               ${data.game.board[4] ? data.game.board[4] : ''}
             </div>
-            <div class="cell" ${!data.game.board[5] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="5" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[5] ? `data-action="click->game#makeMove" data-game-index="5"` : ''}>
               ${data.game.board[5] ? data.game.board[5] : ''}
             </div>
           </div>
           <div class="row">
-            <div class="cell" ${!data.game.board[6] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="6" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[6] ? `data-action="click->game#makeMove" data-game-index="6"` : ''}>
               ${data.game.board[6] ? data.game.board[6] : ''}
             </div>
-            <div class="cell" ${!data.game.board[7] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="7" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[7] ? `data-action="click->game#makeMove" data-game-index="7"` : ''}>
               ${data.game.board[7] ? data.game.board[7] : ''}
             </div>
-            <div class="cell" ${!data.game.board[8] ? `data-controller="game" data-action="click->game#makeMove" data-game-game="${this.gameId}" data-game-index="8" data-game-symbol="${this.userSymbol}"` : ''}>
+            <div class="cell" ${!data.game.board[8] ? `data-action="click->game#makeMove" data-game-index="8"` : ''}>
               ${data.game.board[8] ? data.game.board[8] : ''}
             </div>
           </div>
