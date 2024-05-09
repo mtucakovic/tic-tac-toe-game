@@ -3,6 +3,7 @@
 ## **tic-tac-toe game**
 
 * Checkout reposotory:
+`git clone git@github.com:mtucakovic/tic-tac-toe-game.git`
 
 * build docker compose:
 
