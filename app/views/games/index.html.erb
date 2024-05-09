@@ -1,0 +1,9 @@
+<div class='game'>
+  <h1>tic-tac-toe</h1>
+  <h3>Please enter your name:</h3>
+
+  <div data-controller="join-game">
+    <input class="input-field" type="text" data-join-game-target="name" placeholder="Name" value="<%=params[:name]%>">
+    <button class='button' data-action="click->join-game#joinGame">Join Game</button>
+  </div>
+</div>
