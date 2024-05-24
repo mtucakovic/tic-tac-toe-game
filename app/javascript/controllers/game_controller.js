@@ -55,7 +55,7 @@ export default class extends Controller {
 
   renderGame(data, target) {
     target.innerHTML = `
-      <div id="game-container" data-controller="game" data-game-game="${this.gameId}"  data-game-symbol="${this.userSymbol}">
+      <div id="game-container" data-controller="game" data-game-game="${this.gameId}" data-game-symbol="${this.userSymbol}">
         <div class="board">
           <div class="row">
             <div class="cell" ${!data.game.board[0] ? `data-action="click->game#makeMove" data-game-index="0"` : ''}>
@@ -98,11 +98,13 @@ export default class extends Controller {
         <h3 class='${data.game.status}'>
           ${data.game.status === 'in_progress' ? 'current symbol: ' + data.game.current_symbol.toUpperCase() : data.game.status.replace(/_/g, ' ').toUpperCase()}
         </h3>
+        <h3 class='turn-info'>
+          ${(data.game.status === 'in_progress') ? (data.game.current_symbol === this.userSymbol ? 'Your turn!' : 'Other person turn!') : ''}
+        </h3>
         <h1>
-          ${data.game.winner_name ? '' + data.game.winner_name + ' won, congrats!' : ''}
+          ${data.game.winner_name ? ( (data.game.current_symbol !== this.userSymbol) ? data.game.winner_name + ' won, congrats!' : data.game.winner_name + ' won, try again?') : ''}
         </h1>
       </div>
     `;
   }
 }
-

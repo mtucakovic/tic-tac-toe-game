@@ -88,3 +88,8 @@
 .tie {
   color: green;
 }
+
+.turn-info {
+  color: blue;
+  font-style: bold;
+}
