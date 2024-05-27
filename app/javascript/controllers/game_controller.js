@@ -53,6 +53,20 @@ export default class extends Controller {
     window.location.href = newUrl;
   }
 
+  sanitize(string) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+
+    return string.replace(reg, (match)=>(map[match]));
+  }
+
   renderGame(data, target) {
     target.innerHTML = `
       <div id="game-container" data-controller="game" data-game-game="${this.gameId}" data-game-symbol="${this.userSymbol}">
@@ -93,7 +107,7 @@ export default class extends Controller {
         </div>
 
         <h4>
-          Player X: ${data.game.player_x_name} | Player O: ${data.game.player_o_name ? data.game.player_o_name : ''}
+          Player X: ${this.sanitize(data.game.player_x_name)} | Player O: ${data.game.player_o_name ? this.sanitize(data.game.player_o_name) : ''}
         </h4>
         <h3 class='${data.game.status}'>
           ${data.game.status === 'in_progress' ? 'current symbol: ' + data.game.current_symbol.toUpperCase() : data.game.status.replace(/_/g, ' ').toUpperCase()}
@@ -102,7 +116,7 @@ export default class extends Controller {
           ${(data.game.status === 'in_progress') ? (data.game.current_symbol === this.userSymbol ? 'Your turn!' : 'Other person turn!') : ''}
         </h3>
         <h1>
-          ${data.game.winner_name ? ( (data.game.current_symbol !== this.userSymbol) ? data.game.winner_name + ' won, congrats!' : data.game.winner_name + ' won, try again?') : ''}
+          ${data.game.winner_name ? ( (data.game.current_symbol !== this.userSymbol) ? this.sanitize(data.game.winner_name) + ' won, congrats!' : sanitize(data.game.winner_name) + ' won, try again?') : ''}
         </h1>
       </div>
     `;
